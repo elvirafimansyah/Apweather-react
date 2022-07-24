@@ -2,7 +2,7 @@ import {useState, useEffect} from "react"
 import Left from "../components/LeftSide"
 import { CardDetails, CardEmpty } from "../components/CardDetails"
 import WeatherDetails from "../components/Weather";
-const Layouts = () => {
+const Main = () => {
   const [data, setData] = useState([]);
   const [value, setValue] = useState("palembang");
   const [loading, setLoading] = useState(true);
@@ -10,13 +10,12 @@ const Layouts = () => {
     setValue(e.target.value);
     console.log(e.target.value)
   }
-  const searchData = async(e) => {
+  const searchData = async() => {
     try {
       const resp = await fetch(`https://api.weatherapi.com/v1/current.json?key=ae2ade5033e9450198d64844220502&q=${value}&aqi=no`);
       const respData = await resp.json();
       setData(respData)
       setLoading(false)
-      console.log(data)
     } catch(err){
       console.error("error")
     }
@@ -27,7 +26,7 @@ const Layouts = () => {
 
   return(
     <div className="flex flex-col lg:flex-row">
-      <Left change={handleChange} value={value}/>
+      <Left change={handleChange} value={value} data={data}/>
       <div className="bg-light-navy w-full lg:w-1/2 px-4 lg:px-28">
         <nav className="py-3 lg:py-7">
           <a href="https://github.com/elvirafimansyah/Apweather" target="blank" className="text-xl font-semibold whitespace-nowrap text-white hidden lg:block float-right"  >
@@ -39,15 +38,15 @@ const Layouts = () => {
           </a>
         </nav>
         {loading ? 
-          <div class="middle ">
-            <div class="bar bar1"></div>
-            <div class="bar bar2"></div>
-            <div class="bar bar3"></div>
-            <div class="bar bar4"></div>
-            <div class="bar bar5"></div>
-            <div class="bar bar6"></div>
-            <div class="bar bar7"></div>
-            <div class="bar bar8"></div>
+          <div className="middle ">
+            <div className="bar bar1"></div>
+            <div className="bar bar2"></div>
+            <div className="bar bar3"></div>
+            <div className="bar bar4"></div>
+            <div className="bar bar5"></div>
+            <div className="bar bar6"></div>
+            <div className="bar bar7"></div>
+            <div className="bar bar8"></div>
           </div>
         : 
           <main className="lg:py-10">
@@ -73,4 +72,4 @@ const Layouts = () => {
   )
 }
 
-export default Layouts
+export default Main;

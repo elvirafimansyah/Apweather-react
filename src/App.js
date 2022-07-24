@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Layouts from './layouts/Layouts'
+import Main from './layouts/Main'
 import { Routes, Route } from 'react-router-dom';
 function App() {
   useEffect(() => {
@@ -7,9 +7,8 @@ function App() {
   }, [])
   return (
     <>
-      
       <Routes>
-        <Route exact path='/' element={<Layouts />} />
+        <Route exact path='/' element={<Main />} />
       </Routes>
     </>
   );
