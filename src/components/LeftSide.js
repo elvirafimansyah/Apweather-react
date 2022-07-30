@@ -25,7 +25,7 @@ const Left = ({...props}) => {
         <div className="search-bar h-12" >
           <input type="text" value={props.value} onChange={e => props.change(e)} className="w-full h-full bg-light-navy rounded-lg px-12 bg-no-repeat text-light-gray focus:outline-none" placeholder="Search Location" style={styleInput}/>
         </div>
-        <div className="py-4 md:flex flex-wrap hidden">
+        <div className="py-4 md:flex flex-wrap ">
           <ExCity />
         </div>
       </main>
