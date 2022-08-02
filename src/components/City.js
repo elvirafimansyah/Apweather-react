@@ -1,36 +1,40 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 const ExCity = () => {
   const [city, setCity] = useState([]);
   const [result, setResult] = useState([])
   const [weather, setWeather] = useState([])
 
-  const getCity = async(e) => {
+  const getCity = useCallback(async() => {
     const resp = await fetch("/data/city.json");
     const respData = await resp.json();
     setCity(respData)
-  }
+  }, [])
+  
 
-  const getData = () => {
-    // setWeather(respD)
+  const getData = useCallback(() => {
     const list = []
     for (let i = 0; i < city.length; i++) {
       list.push(city[i].city)
     }
     setResult(list);
+
     result.map(async (result) => {
       const res = await fetch(`https://api.weatherapi.com/v1/current.json?key=ae2ade5033e9450198d64844220502&q=${result}&aqi=no`);
       const respD = await res.json();
-      setWeather([...weather, respD])
+      setWeather((current) => [...current, respD])
+
     })
-  }
-  
+
+
+  }, [result, city])
+
   useEffect(() => {
     getCity()
     getData()
-  })
+  }, [getData, getCity])
   return(
     <>
-      {/* {
+      {
         weather.map((data, i) => (
           <div className= "card bg-light-navy w-full  md:w-52 break-words p-6 rounded-lg mr-3 mb-3  relative" key={i} >
             <div className="row-1 flex justify-between items-center pb-10 ">
@@ -46,7 +50,7 @@ const ExCity = () => {
           </div>
         ))
         
-      } */}
+      }
     
     </>
   )
