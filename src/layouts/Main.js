@@ -8,21 +8,20 @@ const Main = () => {
   const [loading, setLoading] = useState(true);
   const handleChange = (e) => {
     setValue(e.target.value);
-    console.log(e.target.value)
-  }
-  const searchData = async() => {
-    try {
-      const resp = await fetch(`https://api.weatherapi.com/v1/current.json?key=ae2ade5033e9450198d64844220502&q=${value}&aqi=no`);
-      const respData = await resp.json();
-      setData(respData)
-      setLoading(false)
-    } catch(err){
-      console.error("error")
-    }
   }
   useEffect(() => {
+    const searchData = async() => {
+      try {
+        const resp = await fetch(`https://api.weatherapi.com/v1/current.json?key=ae2ade5033e9450198d64844220502&q=${value}&aqi=no`);
+        const respData = await resp.json();
+        setData(respData)
+        setLoading(false)
+      } catch(err){
+        console.error("error")
+      }
+    }
     searchData("palembang")
-  })
+  }, [value])
 
   return(
     <div className="flex flex-col lg:flex-row">

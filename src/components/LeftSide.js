@@ -10,7 +10,7 @@ const Left = ({...props}) => {
     <div className="left-side bg-navy w-full lg:w-1/2 px-4 md:px-8 lg:px-4 lg:px-28 ">
       <nav className="py-7 flex justify-between lg:block">
         <Link to="/" className="flex items-center text-xl font-semibold whitespace-nowrap text-white">
-          <img src="favicon.ico" width="40" alt="logo" /> &nbsp;
+          <img src="/img/logo.png" width="40" alt="logo" /> &nbsp;
             Ap<span className="text-lime">weather</span>
         </Link>
         <a href="https://github.com/elvirafimansyah/Apweather" target="blank" className="text-xl font-semibold whitespace-nowrap text-white lg:hidden">

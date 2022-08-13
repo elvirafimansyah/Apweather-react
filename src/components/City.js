@@ -1,37 +1,34 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState} from "react";
 const ExCity = () => {
-  const [city, setCity] = useState([]);
-  const [result, setResult] = useState([])
   const [weather, setWeather] = useState([])
 
-  const getCity = useCallback(async() => {
-    const resp = await fetch("/data/city.json");
-    const respData = await resp.json();
-    setCity(respData)
-  }, [])
-  
+  const allData = async () => {
+    try {
+      const jakarta = await fetch("https://api.weatherapi.com/v1/current.json?key=ae2ade5033e9450198d64844220502&q=jakarta&aqi=no")
+      const jak = await jakarta.json();
 
-  const getData = useCallback(() => {
-    const list = []
-    for (let i = 0; i < city.length; i++) {
-      list.push(city[i].city)
+      const london = await fetch("https://api.weatherapi.com/v1/current.json?key=ae2ade5033e9450198d64844220502&q=london&aqi=no")
+      const lon = await london.json()
+
+      const newyork = await fetch("https://api.weatherapi.com/v1/current.json?key=ae2ade5033e9450198d64844220502&q=new york&aqi=no")
+      const newy = await newyork.json()
+
+      const beijing = await fetch("https://api.weatherapi.com/v1/current.json?key=ae2ade5033e9450198d64844220502&q=beijing&aqi=no")
+      const bej = await beijing.json()
+
+      const paris = await fetch("https://api.weatherapi.com/v1/current.json?key=ae2ade5033e9450198d64844220502&q=paris&aqi=no")
+      const par = await paris.json()
+
+      setWeather([jak, lon, newy, bej, par])
+    } catch {
+      console.error("jaskajs")
     }
-    setResult(list);
-
-    result.map(async (result) => {
-      const res = await fetch(`https://api.weatherapi.com/v1/current.json?key=ae2ade5033e9450198d64844220502&q=${result}&aqi=no`);
-      const respD = await res.json();
-      setWeather((current) => [...current, respD])
-
-    })
-
-
-  }, [result, city])
+  }
 
   useEffect(() => {
-    getCity()
-    getData()
-  }, [getData, getCity])
+    allData()
+
+  }, [])
   return(
     <>
       {
@@ -49,9 +46,12 @@ const ExCity = () => {
             </div>
           </div>
         ))
-        
       }
-    
+      <div className="card bg-light-navy w-full md:w-52  rounded-lg mr-3 mb-3 flex items-center justify-center">
+        <div className="row-1 flex justify-center items-center">
+          <h4 className="text-4xl font-semibold text-white">+</h4>
+        </div>
+      </div>
     </>
   )
 }
