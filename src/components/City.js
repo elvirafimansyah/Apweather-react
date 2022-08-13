@@ -1,7 +1,12 @@
 import { useEffect, useState} from "react";
-const ExCity = () => {
-  const [weather, setWeather] = useState([])
+import Modal from "react-modal";
+Modal.setAppElement('#root')
 
+const ExCity = () => {
+  let subtitle;
+  const [weather, setWeather] = useState([])
+  const [show, setShow] = useState(false)
+  const [modalIsOpen, setIsOpen] = useState(false)
   const allData = async () => {
     try {
       const jakarta = await fetch("https://api.weatherapi.com/v1/current.json?key=ae2ade5033e9450198d64844220502&q=jakarta&aqi=no")
@@ -25,9 +30,30 @@ const ExCity = () => {
     }
   }
 
+  const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+    },
+  };
+
+  const openModal = () => {
+    setIsOpen(true)
+  }
+
+  const afterOpenModal = () => {
+    subtitle.style.color = '#f00';
+  
+  }
+  const closeModal = () => {
+    setIsOpen(false)
+  }
   useEffect(() => {
     allData()
-
   }, [])
   return(
     <>
@@ -47,11 +73,31 @@ const ExCity = () => {
           </div>
         ))
       }
-      <div className="card bg-light-navy w-full md:w-52  rounded-lg mr-3 mb-3 flex items-center justify-center">
+      <div className="card bg-light-navy w-full md:w-52  rounded-lg mr-3 mb-3 flex items-center justify-center" onClick={openModal}>
         <div className="row-1 flex justify-center items-center">
           <h4 className="text-4xl font-semibold text-white">+</h4>
         </div>
       </div>
+
+      {
+        modalIsOpen ? 
+          <div>
+            <button onClick={openModal}>Open Modal</button>
+            <Modal
+              isOpen={modalIsOpen}
+              onAfterOpen={afterOpenModal}
+              onRequestClose={closeModal}
+              style={customStyles}
+              contentLabel="Example Modal"
+            >
+              <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
+              <button onClick={closeModal}>close</button>
+              <div>I am a modal</div>
+            </Modal>
+          </div>
+        
+        : null
+      }
     </>
   )
 }
