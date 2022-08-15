@@ -23,7 +23,7 @@ const Left = ({...props}) => {
       </nav>
       <main className="py-5 lg:py-3 flex flex-col lg:block md:max-w-4xl lg:max-w-md " >
         <div className="search-bar h-12" >
-          <input type="text" value={props.value} onChange={e => props.change(e)} className="w-full h-full bg-light-navy rounded-lg px-12 bg-no-repeat text-light-gray focus:outline-none" placeholder="Search Location" style={styleInput}/>
+          <input type="text" value={props.value} onChange={e => props.change(e)} className="w-full h-full bg-light-navy rounded-lg px-12 bg-no-repeat text-light-gray focus:outline-none " placeholder="Search Location" style={styleInput}/>
         </div>
         <div className="py-4 md:flex flex-wrap ">
           <ExCity />

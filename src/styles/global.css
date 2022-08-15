@@ -53,3 +53,10 @@
     background: transparent;
   }
 }
+
+.Modal {
+  background-color: papayawhip;
+}
+.Overlay {
+  background: yellow;
+}
