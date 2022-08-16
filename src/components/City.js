@@ -108,7 +108,7 @@ const ExCity = () => {
                           d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                       </svg>
                       <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                        Are you sure you want to reset this data?
+                        Are you sure you want to delete this city?
                       </h3>
                       <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
                         <button class="text-white bg-red-600 border border-transparent hover:bg-red-700 focus:ring-4 focus:ring-red-300 disabled:hover:bg-red-800  focus:!ring-2 group flex h-min w-fit items-center justify-center p-0.5 text-center font-medium focus:z-10 rounded-lg" type="button" onClick={() => {
