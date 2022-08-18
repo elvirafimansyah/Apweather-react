@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react"
+import {useState, useEffect, useRef} from "react"
 import Left from "../components/LeftSide"
 import { CardDetails, CardEmpty } from "../components/CardDetails"
 import WeatherDetails from "../components/Weather";
@@ -6,8 +6,17 @@ const Main = () => {
   const [data, setData] = useState([]);
   const [value, setValue] = useState("palembang");
   const [loading, setLoading] = useState(true);
+  const linkRef = useRef(null)
   const handleChange = (e) => {
     setValue(e.target.value);
+  }
+  const scrollRef = ref => {
+    window.scrollTo({
+      top: ref.offsetTop,
+      left: 0,
+      behavior: 'smooth'
+    })
+    ref.focus()
   }
   useEffect(() => {
     const searchData = async() => {
@@ -25,10 +34,10 @@ const Main = () => {
 
   return(
     <div className="flex flex-col lg:flex-row">
-      <Left change={handleChange} value={value} data={data}/>
+      <Left change={handleChange} value={value} data={data} refff={linkRef}/>
       <div className="bg-light-navy w-full lg:w-1/2 px-4 lg:px-28">
         <nav className="py-3 lg:py-7">
-          <a href="https://github.com/elvirafimansyah/Apweather" target="blank" className="text-xl font-semibold whitespace-nowrap text-white hidden lg:block float-right"  >
+          <a href="https://github.com/elvirafimansyah/Apweather"  target="blank" className="text-xl font-semibold whitespace-nowrap text-white hidden lg:block float-right"  >
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-github"
               viewBox="0 0 16 16">
               <path
@@ -59,7 +68,7 @@ const Main = () => {
             </div>
           </main>
         }
-        <a href="#main" className="fixed no-underline p-1 w-10 h-10 flex items-center justify-center text-white rounded-lg bottom-8 right-8 z-10 bg-navy shadow-md lg:hidden">
+        <a href="# " rel="noopener noreferrer" onClick={() => scrollRef(linkRef.current)}className="fixed no-underline p-1 w-10 h-10 flex items-center justify-center text-white rounded-lg bottom-8 right-8 z-10 bg-navy shadow-md lg:hidden">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search"
             viewBox="0 0 16 16">
             <path
