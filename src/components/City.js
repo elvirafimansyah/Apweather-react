@@ -25,8 +25,8 @@ const ExCity = () => {
   const customStyles = isRow =>  ({
     content: {
       top: '50%',
-      left: '50%',
-      right: 'auto',
+      left: isRow ? '50%' : '50%',
+      right: isRow ? 'auto' : '-30%',
       bottom: 'auto',
       transform: 'translate(-50%, -50%)',
       background: "#152350",
@@ -36,20 +36,7 @@ const ExCity = () => {
     },
   });
 
-  const deleteStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      transform: 'translate(-50%, -50%)',
-      background: "#152350",
-      color: "#fff",
-      borderRadius: '0.5rem'
-    },
-  }
-
-  const openModal = () => {
+    const openModal = () => {
     setIsOpen(true)
   }
 
@@ -102,12 +89,12 @@ const ExCity = () => {
                       <button onClick={() => setDeleteModal(false)} className="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-low-navy hover:text-white hover:cursor-pointer" type="button"><svg stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
                     </div>
                     <div className="text-center">
-                      <svg className="mx-auto mb-4 w-14 h-14 text-gray-400 dark:text-gray-200" fill="none" stroke="currentColor"
+                      <svg className="mx-auto mb-4 w-14 h-14 text-gray-400 text-gray-200" fill="none" stroke="currentColor"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                           d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                       </svg>
-                      <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+                      <h3 className="mb-5 text-lg font-normal text-gray-500 text-gray-400">
                         Are you sure you want to delete this city?
                       </h3>
                       <div className="flex flex-col sm:flex-row justify-center items-center gap-4">

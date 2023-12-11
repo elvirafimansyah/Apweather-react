@@ -7,6 +7,7 @@ const Main = () => {
   const [value, setValue] = useState("palembang");
   const [loading, setLoading] = useState(true);
   const linkRef = useRef(null)
+  
   const handleChange = (e) => {
     setValue(e.target.value);
   }
@@ -18,6 +19,7 @@ const Main = () => {
     })
     ref.focus()
   }
+
   useEffect(() => {
     const searchData = async() => {
       try {
